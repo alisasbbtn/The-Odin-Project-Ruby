@@ -1,4 +1,4 @@
-Caesar Cipher
+Caesar Cipher, Stock Picker
 
 The Odin Project
 Basic Ruby Project
