@@ -1,7 +1,5 @@
-Caesar Cipher, Stock Picker
-
 The Odin Project
-Basic Ruby Project
+Ruby
 
 http://www.theodinproject.com/courses/ruby-programming/
 
