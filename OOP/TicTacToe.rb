@@ -46,12 +46,12 @@ module TicTacToe
       false
     end
 
-    def available?(x, y)
-      (x.to_i >= 0 && x.to_i < 3) && (y.to_i >= 0 && y.to_i < 3) && @board[x.to_i][y.to_i] == @cell
+    def available?(i, j)
+      (i.to_i >= 0 && i.to_i < 3) && (j.to_i >= 0 && j.to_i < 3) && @board[i.to_i][j.to_i] == @cell
     end
 
-    def draw(x, y, symbol)
-      @board[x][y] = symbol
+    def draw(i, j, symbol)
+      @board[i][j] = symbol
     end
 
     private
@@ -65,7 +65,7 @@ module TicTacToe
     attr_reader :symbol
     attr_accessor :name
 
-    def initialize(symbol, name = nil)
+    def initialize(symbol, name)
       @symbol = symbol
       @name = name
     end
