@@ -4,8 +4,6 @@ module TicTacToe
     attr_reader :board
 
     def initialize
-      @x_symbol = 'X'
-      @o_symbol = 'O'
       @cell = ' '
       @board = Array.new(3)  { Array.new(3, @cell) }
     end
