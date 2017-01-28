@@ -54,6 +54,11 @@ module TicTacToe
       @board[i][j] = symbol
     end
 
+    def clear
+      @board.each_index { |i|
+        @board[i].each_index { |j| @board[i][j] = @cell } }
+    end
+
     private
     def win?(set)
       set.all? { |cell| cell != @cell && cell == set[0]}
@@ -62,7 +67,7 @@ module TicTacToe
   end
 
   class Player
-    attr_reader :symbol
+    attr_accessor :symbol
     attr_accessor :name
 
     def initialize(symbol, name)
@@ -102,8 +107,8 @@ module TicTacToe
           j = 0
 
           until check
-            i = gets.chomp
-            j = gets.chomp
+            i = gets
+            j = gets
             if @board.available?(i.to_i, j.to_i)
               check = true
               break
@@ -119,6 +124,10 @@ module TicTacToe
           win = @board.check(player.symbol, i.to_i, j.to_i)
           if win
             puts "#{player.name} wins!"
+            if player.symbol == 'O'
+              @players[0].symbol, @players[1].symbol = @players[1].symbol, @players[0].symbol
+              @players.reverse!
+            end
             break
           end
         }
@@ -127,7 +136,22 @@ module TicTacToe
 
       end
 
-      puts 'End of game!'
+      puts 'End of game! Again? Y/N'
+
+      check = false
+      until check
+        answer = gets.chomp
+        if answer.downcase == 'y'
+          check = true
+          @board.clear
+          @board.show
+          process
+        elsif answer.downcase == 'n'
+          check = true
+        else
+          puts 'Wrong input. Try again.'
+        end
+      end
       exit
     end
 
@@ -136,7 +160,6 @@ module TicTacToe
       puts 'Welcome to Tic Tac Toe!'
       puts "Nice to meet you, #{@players[0].name} and #{@players[-1].name}! Let's the game begin!"
     end
-
   end
 end
 
