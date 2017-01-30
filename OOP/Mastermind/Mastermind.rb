@@ -14,10 +14,11 @@ class Game
     @code = Array.new
     code_colors.each { |color| @code << Peg.create_color_peg(color) }
 
-    
-    puts 'Welcome to Mastermind!'.upcase
+    puts 'Welcome to Mastermind!'
     puts
     sleep 1
+
+    process
   end
 
   def process
@@ -26,18 +27,17 @@ class Game
 
       puts 'Do your guess. Pick four colors by name'
       guess = Array.new
-      4.times {
-        check = false
+      4.times { check = false
         until check
           color = gets.chomp
-          if @pegs.map { |peg| peg.color }.include?(color) && !guess.map { |peg| peg.color }.include?(color)
+          if @pegs.map { |peg| peg.color }.include?(color) && !guess.map { |peg| peg.color }.include?(color) #check if color exists and doesn't used before
             guess << Peg.create_color_peg(color.to_sym)
             check = true
           else
             puts 'Wrong input. Try again'
           end
-        end
-      }
+
+        end }
 
       key = Array.new
       guess.each_index { |index|
@@ -47,22 +47,23 @@ class Game
           key << Peg.create_key_peg(:white)
         end
       }
-      if key.size != 4
-        4-key.size.times { key << nil }
-      end
 
       @board.fill(attempt, guess, key.shuffle!)
 
-      if key.map {|key| !key.nil? } == 4 && key.all? { |peg| peg.color == 'black' }
-        show
-        puts 'Wow, you guessed it!'
-        break
+      if key.size == 4
+        if key.all? { |peg| peg.color == 'black' }
+          show
+          puts 'Wow, you guessed it!'
+          break
+        end
       end
 
     end
 
     show
+
     puts 'End of game! Again?'
+
     check = false
     until check
       answer = gets.chomp
@@ -71,11 +72,13 @@ class Game
         @board.clear
         process
       elsif answer.downcase == 'n'
-        check = true
+        break
+        exit
       else
         puts 'Wrong input. Try again.'
       end
     end
+
   end
 
   def show
@@ -90,5 +93,3 @@ class Game
 end
 
 game = Game.new
-game.process
-

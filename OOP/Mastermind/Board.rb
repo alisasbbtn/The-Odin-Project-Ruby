@@ -14,9 +14,9 @@ class Board
       puts }
   end
 
-  def fill(row, guess, key = nil)
+  def fill(row, guess, key)
     @board[row].guess.each_index { |index| @board[row].guess[index] = guess[index].peg }
-    key.each_index { |index| @board[row].key[index] = key[index].peg unless key[index].nil? }
+    key.shuffle!.each_index { |index| @board[row].key[index] = key[index].peg }
   end
 
   def clear
@@ -27,6 +27,7 @@ end
 
 class Row
   attr_accessor :guess, :key
+
   def initialize
     @guess = Array.new(4, 'O')
     @key = Array.new(4, 'o')
@@ -39,6 +40,7 @@ end
 
 class Peg
   attr_reader :peg, :color
+
   def initialize(symbol, color)
     @peg = symbol.send color.to_sym
     @color = color.to_s
