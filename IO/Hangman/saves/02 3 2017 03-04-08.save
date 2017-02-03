@@ -1,0 +1,17 @@
+---
+:word: bane
+:attempts: 2
+:guesses:
+- a
+- n
+- m
+- i
+- r
+- t
+- b
+:word_show: ban_
+:hangman_show:
+- " _________      "
+- "|         |     "
+- "|         0     "
+- "|        /|\\\\  "

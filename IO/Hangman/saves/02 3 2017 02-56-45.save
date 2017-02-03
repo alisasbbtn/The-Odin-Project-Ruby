@@ -1,0 +1,9 @@
+---
+:word: fantasise
+:attempts: 5
+:guesses:
+- a
+- b
+:word_show: _a__a____
+:hangman_show:
+- " _________      "

@@ -1,0 +1,8 @@
+---
+:word: bane
+:attempts: 6
+:guesses:
+- a
+- n
+:word_show: _an_
+:hangman_show: []
